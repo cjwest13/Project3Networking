@@ -5,8 +5,16 @@ package server;
  */
 public class SosBoard {
     private String[][] board;
-    public String drawBoard(int row, int col) {
+    int row;
+    int col;
+
+    public SosBoard(int row, int col) {
+        this.row = row;
+        this.col = col;
         board = new String[row][col];
+    }
+
+    public String drawBoard() {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 board[i][j] = "\t";
