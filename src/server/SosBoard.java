@@ -14,15 +14,16 @@ public class SosBoard {
                 //your code to access display[row][col]
             }
         }
-        StringBuilder string = new StringBuilder("Game Board\n");
-        string.append("\t\t0\t1\t2\n");
-        string.append("\t+---+----+----+\n");
+        StringBuilder string = new StringBuilder();
+        string.append("\t  0\t  1\t  2\n");
+        string.append("\t+---+---+---+\n");
         for (int i = 0; i < 3; i++) {
             string.append(i+"\t");
             for (int j = 0; j < 3; j++) {
-                string.append("[" + board[i][j] + "]");
+                string.append("|" + board[i][j]);
             }
-            string.append("\n");
+            string.append("|\n");
+            string.append("\t+---+---+---+\n");
         }
         return string.toString();
     }
