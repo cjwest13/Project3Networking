@@ -2,18 +2,17 @@ package server;
 import java.util.Scanner;
 /**
  * Created by cjwest on 11/8/15.
+ * NOTE : Possibly put the if i = 0 and if i = 1 in move function around
+ * the junk inside the while might fix the problem and possibly change isWinner
+ * to a if statement inside the i = 0 statement
  */
 public class Game {
     private String[][] board;
     private SosBoard b;
-    private int player1;
-    private int player2;
 
     public Game () {
         this.board = new String[3][3];
         this.b = new SosBoard(getBoard());
-        this.player1 = 0;
-        this.player2 = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = " ";
@@ -22,11 +21,19 @@ public class Game {
     }
 
     public void move() {
+        int p0 = 0;
+        int p1 = 0;
         Scanner input = new Scanner(System.in);
         System.out.println(b.drawBoard());
-        System.out.println("Player 1 : " + player1);
-        System.out.println("Player 2 : " + player2);
+        System.out.println("Player 0 : " + p0);
+        System.out.println("Player 1 : " + p1);
+        System.out.println();
+
+        int i = 0;
         while (isFull()) {
+            System.out.println("______________________________");
+            System.out.println("Player " + i%2 + "'s turn");
+            i = i%2;
             System.out.println("Please enter a row num");
             int row = input.nextInt();
             System.out.println("Please enter a column num");
@@ -36,36 +43,60 @@ public class Game {
             String result = input.nextLine();
             board[row][col] = result;
             System.out.println(b.drawBoard());
-            isWinner();
+
+            if((i == 0) && isWinner()) {
+                p0 += 1;
+            } else if((i ==1) && isWinner()) {
+                p1 += 1;
+            }
+            System.out.println("Player 0 : " + p0);
+            System.out.println("Player 1 : " + p1);
+            i++;
+            System.out.println("______________________________");
+
         }
+
+
     }
 
-    public void isWinner() {
+    public boolean isWinner() {
+        boolean result = false;
         //Check the row
         for(int i = 0; i<board[0].length; i++) {
             if(board[i][0].equals("S") && board[i][1].equals("O") &&
                     board[i][2].equals("S")) {
+                result = true;
                 System.out.println("Row WIN!");
+                return result;
             }
         }
-
+        //Check Col
         for(int i = 0; i<board.length; i++) {
             if(board[0][i].equals("S") && board[1][i].equals("O") &&
                     board[2][i].equals("S")) {
+                result = true;
                 System.out.println("Col win");
+                return result;
             }
         }
-
+        //Check for diagonal left to right
         if(board[0][0].equals("S") && board[1][1].equals("O") &&
                 board[2][2].equals("S")) {
+            result = true;
             System.out.println("FIrst Col win");
+            return result;
         }
-
+        //CHeck for second diagonal right to left
         if(board[0][2].equals("S") && board[1][1].equals("O") &&
                 board[2][0].equals("S")) {
+            result = true;
             System.out.println("Second Col win");
+            return result;
         }
+        result = false;
+        return result;
     }
+
 
     public boolean isFull() {
         boolean result = false;
