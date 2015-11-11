@@ -9,19 +9,20 @@ public class SosBoard {
     int col = 3;
 
     public SosBoard(String[][] board) {
+
         //this.row = row;
         //this.col = col;
         this.board = board;
     }
 
     public String drawBoard() {
-        /**
-        for (int i = 0; i < row; i++) {
+
+        /*for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 board[i][j] = "\t";
             }
-        }
-         */
+        }*/
+
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < col; i++) {
             string.append("\t  " + i);
@@ -35,7 +36,7 @@ public class SosBoard {
         for (int i = 0; i < row; i++) {
             string.append(i+"\t");
             for (int j = 0; j < col; j++) {
-                string.append("|" + board[i][j]);
+                string.append("|  " + board[i][j]);
             }
             string.append("|\n\t");
             for (int k = 0; k < col; k++) {
