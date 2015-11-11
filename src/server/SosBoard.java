@@ -5,21 +5,23 @@ package server;
  */
 public class SosBoard {
     private String[][] board;
-    int row;
-    int col;
+    int row = 3;
+    int col = 3;
 
-    public SosBoard(int row, int col) {
-        this.row = row;
-        this.col = col;
-        board = new String[row][col];
+    public SosBoard(String[][] board) {
+        //this.row = row;
+        //this.col = col;
+        this.board = board;
     }
 
     public String drawBoard() {
+        /**
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 board[i][j] = "\t";
             }
         }
+         */
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < col; i++) {
             string.append("\t  " + i);

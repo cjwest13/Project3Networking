@@ -24,7 +24,7 @@ public abstract class MessageSource {
             // one of our observers screws up, we don’t want to stop
             // notifying other observers.
             try {
-                //listener.messageReceived(message, this);
+                listener.messageReceived(message, this);
                 } catch (RuntimeException ex) {
                     ex.printStackTrace();
                 }
@@ -39,7 +39,7 @@ public abstract class MessageSource {
         for (MessageListener listener :
                 new ArrayList<MessageListener>(messageListeners)) {
             try {
-                //listener.sourceClosed(this);
+                listener.sourceClosed(this);
             } catch (RuntimeException ex) {
                 // Ignore any exceptions encountered when trying to close
                 // a source. There’s a similar rationale here as we had
