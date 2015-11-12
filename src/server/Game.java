@@ -40,14 +40,14 @@ public class Game {
         System.out.println("______________________________");
         System.out.println("Please enter a row num");
         int row = input.nextInt();
-        while(row > board.length) {
+        while(row >= board.length) {
             System.out.println("Not valid man try again.");
             System.out.println("Please enter a row num");
             row = input.nextInt();
         }
         System.out.println("Please enter a column num");
         int col = input.nextInt();
-        while(col > board[0].length) {
+        while(col >= board[0].length) {
             System.out.println("Not valid man try again.");
             System.out.println("Please enter a column num");
             col = input.nextInt();
