@@ -11,6 +11,8 @@ public class Game {
     private SosBoard b;
     private int player0;
     private int player1;
+    int j = -1;
+    int k = -1;
 
     public Game () {
         this.board = new String[3][3];
@@ -84,13 +86,29 @@ public class Game {
 
     public boolean isWinner() {
         boolean result = false;
+        boolean row = false;
+        boolean col = false;
+        boolean diagonal1 = false;
+        boolean diagonal2 = false;
+
+
         //Check the row
         for(int i = 0; i<board[0].length; i++) {
             if(board[i][0].equals("S") && board[i][1].equals("O") &&
                     board[i][2].equals("S")) {
-                result = true;
-                System.out.println("Row WIN!");
-                return result;
+                if (j == -1 ) {
+                    result = true;
+                    j = i;
+                    System.out.println("Row WIN!");
+                    return result;
+                } else if (j == i || k == i) {
+                    return false;
+                } else {
+                    result = true;
+                    k = i;
+                    System.out.println("Row WIN!");
+                    return result;
+                }
             }
         }
         //Check Col

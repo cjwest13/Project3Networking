@@ -35,6 +35,7 @@ public class MutliuserSosClientDriver {
             InetAddress host = InetAddress.getByName(hostname);
 
             MultiuserSosClient client = new MultiuserSosClient(host, port, username);
+            client.start();
         } catch (NumberFormatException nfe) {
             System.out.println("The port has to be a number.");
             System.exit(1);
