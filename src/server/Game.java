@@ -14,6 +14,8 @@ public class Game {
     private int length;
     int j = -1;
     int k = -1;
+    int l = -1;
+    int m = -1;
 
     public Game () {
         this.board = new String[3][3];
@@ -29,43 +31,28 @@ public class Game {
     }
 
     public void move() {
-        //int p0 = 0;
-        //int p1 = 0;
         Scanner input = new Scanner(System.in);
-        //System.out.println(b.drawBoard());
         System.out.println("Player 0 : " + this.player0);
         System.out.println("Player 1 : " + this.player1);
         System.out.println();
-
-        //this.playerTurn = 0;
-        //while (isFull()) {
-            System.out.println("______________________________");
-            //System.out.println("Player " + i%2 + "'s turn");
-            //i = i%2;
-            System.out.println("Please enter a row num");
-            int row = input.nextInt();
-            System.out.println("Please enter a column num");
-            int col = input.nextInt();
-            input.nextLine();
-            System.out.println("Enter S or O: ");
-            String result = input.nextLine();
+        System.out.println("______________________________");
+        System.out.println("Please enter a row num");
+        int row = input.nextInt();
+        System.out.println("Please enter a column num");
+        int col = input.nextInt();
+        input.nextLine();
+        System.out.println("Enter S or O: ");
+        String result = input.nextLine();
+        if(board[row][col].equals("S") || board[row][col].equals("O")) {
+            System.out.println("BITCH WHO SAID YOU CAN CHEAT?");
+        } else {
+            System.out.println("IM OVA HERE BITCH");
             board[row][col] = result;
-            System.out.println(b.drawBoard());
-            /*
-            if((i == 0) && isWinner()) {
-                p0 += 1;
-            } else if((i ==1) && isWinner()) {
-                p1 += 1;
-            }
-            System.out.println("Player 0 : " + p0);
-            System.out.println("Player 1 : " + p1);
-            i++;
-            System.out.println("______________________________");
-            */
-        //}
+        }
+        System.out.println(b.drawBoard());
     }
 
-    public void whosTurnAndScore() {
+    public void play() {
         int playerTurn = 0;
         System.out.println(b.drawBoard());
         while(isEmpty()) {
@@ -122,9 +109,22 @@ public class Game {
         for(int i = 0; i<board.length; i++) {
             if(board[0][i].equals("S") && board[1][i].equals("O") &&
                     board[2][i].equals("S")) {
-                result = true;
-                System.out.println("Col win");
-                return result;
+                if (l == -1 ) {
+                    result = true;
+                    l = i;
+                    System.out.println("COl WIN!");
+                    return result;
+                } else if (l == i || m == i) {
+                    break;
+                } else {
+                    result = true;
+                    m = i;
+                    System.out.println("Col WIN!");
+                    return result;
+                }
+                //result = true;
+               // System.out.println("Col win");
+                //return result;
             }
         }
         //Check for diagonal left to right
@@ -144,7 +144,6 @@ public class Game {
         return result;
     }
 
-
     public boolean isEmpty() {
         boolean result = false;
         for(int i = 0; i < board.length; i++){
@@ -159,12 +158,6 @@ public class Game {
         return result;
     }
 
-    public void finalScore() {
-        System.out.println("Final Score!");
-        System.out.println("Player 0: " + player0 );
-        System.out.println("Player 1: " + player1 );
-
-    }
 
     public String[][] getBoard() {
         return board;
