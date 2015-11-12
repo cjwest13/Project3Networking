@@ -144,6 +144,9 @@ public class Game {
             for(int j = 0; j < board[i].length; j++){
                 if(board[i][j] == " ")
                     result = true;
+                    System.out.println("FINAL SCORE!");
+                    System.out.println("Player 0: " + player0);
+                    System.out.println("Player 1: " + player1);
             }
         }
         return result;
