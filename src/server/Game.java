@@ -44,12 +44,11 @@ public class Game {
         int col = input.nextInt();
         input.nextLine();
         System.out.println("Enter S or O: ");
-        String result = input.nextLine();
-
-        if((!result.toUpperCase().equals("S")) || (!result.toUpperCase().equals("O")) ) {
+        String res = input.nextLine();
+        String result = res.toUpperCase().trim();
+        if(!result.equals("S") && !result.equals("O") ) {
             System.out.println("YOU HAVE INPUTTED SOMETHING ELSE BESIDES S AND O....BITCH");
-        }
-        if(board[row][col].equals("S") || board[row][col].equals("O")) {
+        } else if(board[row][col].equals("S") || board[row][col].equals("O")) {
             System.out.println("BITCH WHO SAID YOU CAN CHEAT?");
         } else {
             //System.out.println("IM OVA HERE BITCH");
