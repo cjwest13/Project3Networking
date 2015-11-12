@@ -84,6 +84,10 @@ public class Game {
             }
             playerTurn++;
         }
+        System.out.println("Final Score!");
+        System.out.println("Player 0: " + player0 );
+        System.out.println("Player 1: " + player1 );
+
 
     }
 
@@ -105,7 +109,7 @@ public class Game {
                     System.out.println("Row WIN!");
                     return result;
                 } else if (j == i || k == i) {
-                    return false;
+                    break;
                 } else {
                     result = true;
                     k = i;
@@ -147,10 +151,7 @@ public class Game {
             for(int j = 0; j < board[i].length; j++){
                 if(board[i][j] == " ") {
                     result = true;
-                } else if(board[i][j] != " ") {
-                    System.out.println("Final Score!");
-                    System.out.println("Player 0: " + player0 );
-                    System.out.println("Player 1: " + player1 );
+                //} else if(board[i][j] != " ") {
 
                 }
             }
@@ -158,6 +159,12 @@ public class Game {
         return result;
     }
 
+    public void finalScore() {
+        System.out.println("Final Score!");
+        System.out.println("Player 0: " + player0 );
+        System.out.println("Player 1: " + player1 );
+
+    }
 
     public String[][] getBoard() {
         return board;
