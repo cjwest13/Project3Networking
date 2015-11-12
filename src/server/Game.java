@@ -12,10 +12,12 @@ public class Game {
     private int player0;
     private int player1;
     private int length;
-    int j = -1;
-    int k = -1;
-    int l = -1;
-    int m = -1;
+    private int rowj = -1;
+    private int rowk = -1;
+    private int colj = -1;
+    private int colk = -1;
+    private boolean diagonal1 = false;
+    private boolean diagonal2 = false;
 
     public Game () {
         this.board = new String[3][3];
@@ -90,55 +92,54 @@ public class Game {
         for(int i = 0; i<board[0].length; i++) {
             if(board[i][0].equals("S") && board[i][1].equals("O") &&
                     board[i][2].equals("S")) {
-                if (j == -1 ) {
+                if (rowj == -1 ) {
                     result = true;
-                    j = i;
+                    rowj = i;
                     System.out.println("Row WIN!");
                     return result;
-                } else if (j == i || k == i) {
-                    break;
+                } else if (rowj == i || rowk == i) {
+                    continue;
                 } else {
                     result = true;
-                    k = i;
+                    rowk = i;
                     System.out.println("Row WIN!");
                     return result;
                 }
             }
         }
         //Check Col
-        for(int i = 0; i<board.length; i++) {
+        for(int i = 0; i< board.length; i++) {
             if(board[0][i].equals("S") && board[1][i].equals("O") &&
                     board[2][i].equals("S")) {
-                if (l == -1 ) {
+                if (colj == -1) {
                     result = true;
-                    l = i;
-                    System.out.println("COl WIN!");
+                    colj = i;
+                    System.out.println("Col WIN!");
                     return result;
-                } else if (l == i || m == i) {
-                    break;
+                } else if (colj == i || colk == i) {
+                    continue;
                 } else {
                     result = true;
-                    m = i;
+                    colk = i;
                     System.out.println("Col WIN!");
                     return result;
                 }
-                //result = true;
-               // System.out.println("Col win");
-                //return result;
             }
         }
         //Check for diagonal left to right
-        if(board[0][0].equals("S") && board[1][1].equals("O") &&
-                board[2][2].equals("S")) {
+        if((board[0][0].equals("S") && board[1][1].equals("O") &&
+                board[2][2].equals("S")) && !diagonal1) {
             result = true;
-            System.out.println("FIrst Col win");
+            diagonal1 = true;
+            System.out.println("FIrst Diagonal win");
             return result;
         }
-        //CHeck for second diagonal right to left
-        if(board[0][2].equals("S") && board[1][1].equals("O") &&
-                board[2][0].equals("S")) {
+        //Check for second diagonal right to left
+        if((board[0][2].equals("S") && board[1][1].equals("O") &&
+                board[2][0].equals("S")) && !diagonal2) {
             result = true;
-            System.out.println("Second Col win");
+            diagonal2 = true;
+            System.out.println("Second Diagonal win");
             return result;
         }
         return result;
@@ -150,8 +151,6 @@ public class Game {
             for(int j = 0; j < board[i].length; j++){
                 if(board[i][j] == " ") {
                     result = true;
-                //} else if(board[i][j] != " ") {
-
                 }
             }
         }
