@@ -45,14 +45,15 @@ public class Game {
         input.nextLine();
         System.out.println("Enter S or O: ");
         String result = input.nextLine();
-        if((!result.equals("S")) || (!result.equals("O")) ) {
+
+        if((!result.toUpperCase().equals("S")) || (!result.toUpperCase().equals("O")) ) {
             System.out.println("YOU HAVE INPUTTED SOMETHING ELSE BESIDES S AND O....BITCH");
         }
         if(board[row][col].equals("S") || board[row][col].equals("O")) {
             System.out.println("BITCH WHO SAID YOU CAN CHEAT?");
         } else {
             //System.out.println("IM OVA HERE BITCH");
-            board[row][col] = result;
+            board[row][col] = result.toUpperCase();
         }
         System.out.println(b.drawBoard());
     }
