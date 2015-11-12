@@ -20,7 +20,7 @@ public class Game {
         this.b = new SosBoard(getBoard());
         this.player0 = 0;
         this.player1 = 0;
-        this.length = board.length * board
+        this.length = board.length * board[0].length;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = " ";
@@ -74,12 +74,12 @@ public class Game {
             if(playerTurn == 0) {
                 move();
                 if(isWinner()) {
-                    player0 ++;
+                    player0++;
                 }
             } else if (playerTurn == 1) {
                 move();
                 if(isWinner()) {
-                    player1 ++;
+                    player1++;
                 }
             }
             playerTurn++;
