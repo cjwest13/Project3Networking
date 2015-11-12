@@ -11,6 +11,7 @@ public class Game {
     private SosBoard b;
     private int player0;
     private int player1;
+    private int length;
     int j = -1;
     int k = -1;
 
@@ -19,6 +20,7 @@ public class Game {
         this.b = new SosBoard(getBoard());
         this.player0 = 0;
         this.player1 = 0;
+        this.length = board.length * board
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = " ";
@@ -30,7 +32,7 @@ public class Game {
         //int p0 = 0;
         //int p1 = 0;
         Scanner input = new Scanner(System.in);
-        System.out.println(b.drawBoard());
+        //System.out.println(b.drawBoard());
         System.out.println("Player 0 : " + this.player0);
         System.out.println("Player 1 : " + this.player1);
         System.out.println();
@@ -65,7 +67,8 @@ public class Game {
 
     public void whosTurnAndScore() {
         int playerTurn = 0;
-        while(isFull()) {
+        System.out.println(b.drawBoard());
+        while(isEmpty()) {
             playerTurn = playerTurn%2;
             System.out.println("Player " + playerTurn%2 + "'s turn");
             if(playerTurn == 0) {
@@ -138,20 +141,22 @@ public class Game {
     }
 
 
-    public boolean isFull() {
+    public boolean isEmpty() {
         boolean result = false;
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[i].length; j++){
-                if(board[i][j] == " ")
+                if(board[i][j] == " ") {
                     result = true;
-                    System.out.println("FINAL SCORE!");
-                    System.out.println("Player 0: " + player0);
-                    System.out.println("Player 1: " + player1);
+                } else if(board[i][j] != " ") {
+                    System.out.println("Final Score!");
+                    System.out.println("Player 0: " + player0 );
+                    System.out.println("Player 1: " + player1 );
+
+                }
             }
         }
         return result;
     }
-
 
 
     public String[][] getBoard() {
