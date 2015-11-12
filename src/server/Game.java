@@ -45,6 +45,9 @@ public class Game {
         input.nextLine();
         System.out.println("Enter S or O: ");
         String result = input.nextLine();
+        if((!result.equals("S")) || (!result.equals("O")) ) {
+            System.out.println("YOU HAVE INPUTTED SOMETHING ELSE BESIDES S AND O....BITCH");
+        }
         if(board[row][col].equals("S") || board[row][col].equals("O")) {
             System.out.println("BITCH WHO SAID YOU CAN CHEAT?");
         } else {
@@ -84,8 +87,6 @@ public class Game {
         boolean result = false;
         boolean row = false;
         boolean col = false;
-        boolean diagonal1 = false;
-        boolean diagonal2 = false;
 
 
         //Check the row
