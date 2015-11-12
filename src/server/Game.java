@@ -40,8 +40,18 @@ public class Game {
         System.out.println("______________________________");
         System.out.println("Please enter a row num");
         int row = input.nextInt();
+        while(row > board.length) {
+            System.out.println("Not valid man try again.");
+            System.out.println("Please enter a row num");
+            row = input.nextInt();
+        }
         System.out.println("Please enter a column num");
         int col = input.nextInt();
+        while(col > board[0].length) {
+            System.out.println("Not valid man try again.");
+            System.out.println("Please enter a column num");
+            col = input.nextInt();
+        }
         input.nextLine();
         System.out.println("Enter S or O: ");
         String res = input.nextLine();
@@ -51,7 +61,6 @@ public class Game {
         } else if(board[row][col].equals("S") || board[row][col].equals("O")) {
             System.out.println("BITCH WHO SAID YOU CAN CHEAT?");
         } else {
-            //System.out.println("IM OVA HERE BITCH");
             board[row][col] = result.toUpperCase();
         }
         System.out.println(b.drawBoard());
