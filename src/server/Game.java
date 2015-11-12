@@ -45,6 +45,9 @@ public class Game {
         input.nextLine();
         System.out.println("Enter S or O: ");
         String result = input.nextLine();
+        if((!result.equals("S")) || (!result.equals("O")) ) {
+            System.out.println("YOU HAVE INPUTTED SOMETHING ELSE BESIDES S AND O....BITCH");
+        }
         if(board[row][col].equals("S") || board[row][col].equals("O")) {
             System.out.println("BITCH WHO SAID YOU CAN CHEAT?");
         } else {
@@ -84,6 +87,7 @@ public class Game {
         boolean result = false;
         boolean row = false;
         boolean col = false;
+
 
         //Check the row
         for(int i = 0; i<board[0].length; i++) {
@@ -131,33 +135,14 @@ public class Game {
             System.out.println("FIrst Diagonal win");
             return result;
         }
-        /**
-        //Check for diagonal left to right
-        if((board[2][2].equals("S") && board[1][1].equals("O") &&
-                board[0][0].equals("S")) && !diagonal1) {
-            result = true;
-            diagonal1 = true;
-            System.out.println("FIrst Diagonal win");
-            return result;
-        }
-         */
         //Check for second diagonal right to left
         if((board[0][2].equals("S") && board[1][1].equals("O") &&
                 board[2][0].equals("S")) && !diagonal2) {
             result = true;
             diagonal2 = true;
-            System.out.println("Second HHHHHH win");
+            System.out.println("Second Diagonal win");
             return result;
         }
-        /**
-        if((board[2][0].equals("S") && board[1][1].equals("O") &&
-                board[0][2].equals("S")) && !diagonal2) {
-            result = true;
-            diagonal2 = true;
-            System.out.println("Second FFFFFFF win");
-            return result;
-        }
-         */
         return result;
     }
 
@@ -170,7 +155,6 @@ public class Game {
                 }
             }
         }
-
         return result;
     }
 
