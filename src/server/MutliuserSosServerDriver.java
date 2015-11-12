@@ -22,7 +22,7 @@ public class MutliuserSosServerDriver {
                 System.out.println("These are ele" + board.getBoard()[i][j]);
             }
         }*/
-        game.move();
+        game.whosTurnAndScore();
        //System.out.println(board.getBoard());
         //System.out.println(game.getBoard());
         //System.out.println(board.drawBoard());

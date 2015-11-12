@@ -9,10 +9,14 @@ import java.util.Scanner;
 public class Game {
     private String[][] board;
     private SosBoard b;
+    private int player0;
+    private int player1;
 
     public Game () {
         this.board = new String[3][3];
         this.b = new SosBoard(getBoard());
+        this.player0 = 0;
+        this.player1 = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = " ";
@@ -21,19 +25,19 @@ public class Game {
     }
 
     public void move() {
-        int p0 = 0;
-        int p1 = 0;
+        //int p0 = 0;
+        //int p1 = 0;
         Scanner input = new Scanner(System.in);
         System.out.println(b.drawBoard());
-        System.out.println("Player 0 : " + p0);
-        System.out.println("Player 1 : " + p1);
+        System.out.println("Player 0 : " + this.player0);
+        System.out.println("Player 1 : " + this.player1);
         System.out.println();
 
-        int i = 0;
-        while (isFull()) {
+        //this.playerTurn = 0;
+        //while (isFull()) {
             System.out.println("______________________________");
-            System.out.println("Player " + i%2 + "'s turn");
-            i = i%2;
+            //System.out.println("Player " + i%2 + "'s turn");
+            //i = i%2;
             System.out.println("Please enter a row num");
             int row = input.nextInt();
             System.out.println("Please enter a column num");
@@ -43,7 +47,7 @@ public class Game {
             String result = input.nextLine();
             board[row][col] = result;
             System.out.println(b.drawBoard());
-
+            /*
             if((i == 0) && isWinner()) {
                 p0 += 1;
             } else if((i ==1) && isWinner()) {
@@ -53,9 +57,28 @@ public class Game {
             System.out.println("Player 1 : " + p1);
             i++;
             System.out.println("______________________________");
+            */
+        //}
+    }
 
+    public void whosTurnAndScore() {
+        int playerTurn = 0;
+        while(isFull()) {
+            playerTurn = playerTurn%2;
+            System.out.println("Player " + playerTurn%2 + "'s turn");
+            if(playerTurn == 0) {
+                move();
+                if(isWinner()) {
+                    player0 ++;
+                }
+            } else if (playerTurn == 1) {
+                move();
+                if(isWinner()) {
+                    player1 ++;
+                }
+            }
+            playerTurn++;
         }
-
 
     }
 
@@ -93,7 +116,6 @@ public class Game {
             System.out.println("Second Col win");
             return result;
         }
-        result = false;
         return result;
     }
 
