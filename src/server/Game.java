@@ -18,15 +18,17 @@ public class Game {
     private int colk = -1;
     private boolean diagonal1 = false;
     private boolean diagonal2 = false;
+    private int size;
 
-    public Game () {
+    public Game (int size) {
         this.board = new String[3][3];
         this.b = new SosBoard(getBoard());
         this.player0 = 0;
         this.player1 = 0;
         this.length = board.length * board[0].length;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        this.size = size;
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
                 board[i][j] = " ";
             }
         }
