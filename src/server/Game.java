@@ -21,7 +21,7 @@ public class Game {
     private int size;
 
     public Game (int size) {
-        this.board = new String[3][3];
+        this.board = new String[size][size];
         this.b = new SosBoard(getBoard());
         this.player0 = 0;
         this.player1 = 0;
@@ -98,8 +98,8 @@ public class Game {
         boolean result = false;
         boolean row = false;
         boolean col = false;
-
-
+        checkRows();
+        /*
         //Check the row
         for(int i = 0; i<board[0].length; i++) {
             if(board[i][0].equals("S") && board[i][1].equals("O") &&
@@ -118,7 +118,7 @@ public class Game {
                     return result;
                 }
             }
-        }
+        }*/
         //Check Col
         for(int i = 0; i< board.length; i++) {
             if(board[0][i].equals("S") && board[1][i].equals("O") &&
@@ -153,6 +153,36 @@ public class Game {
             diagonal2 = true;
             System.out.println("Second Diagonal win");
             return result;
+        }
+        return result;
+    }
+
+    public boolean checkRows() {
+        boolean result = false;
+        boolean row = false;
+        boolean col = false;
+        //Check the row
+        for(int i = 0; i<board[0].length; i++) {
+            for(int j = 0; j<board.length -1; j++) {
+
+                if (board[i][j].equals("S") && board[i][j+1].equals("O") &&
+                        board[i][j+2].equals("S")) {
+                    if (rowj == -1) {
+                        System.out.println("J is Debug: " + j);
+                        result = true;
+                        rowj = i;
+                        System.out.println("Row WIN! ROW1");
+                        return result;
+                    } else if (rowj == i || rowk == i) {
+                        continue;
+                    } else {
+                        result = true;
+                        rowk = i;
+                        System.out.println("Row WIN!ROW2");
+                        return result;
+                    }
+                }
+            }
         }
         return result;
     }
