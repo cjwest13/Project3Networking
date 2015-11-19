@@ -1,46 +1,75 @@
 package server;
 
-import client.MultiuserSosClient;
+
 import common.MessageListener;
 import common.MessageSource;
-
+import common.NetworkInterface;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
- * Created by cjwest on 11/10/15.
+ * The TCP server.
+ * @author Tommy Ho & Clifton West
+ * @version 11/5/2015
  */
 public class MultiUserSosServer implements MessageListener {
+    /** The port number. */
     private int port;
+    /** ArrayList to keep the threads in */
+    private ArrayList<Thread> threads;
+    /**  ArrayList used to keep all of the usernames in */
+    public static ArrayList<String> usernames;
+    /** Size of the Board */
+    private int board;
 
-    public MultiUserSosServer(int port) {
+    /**
+     * The constructor fo the MultiUserSosServer class
+     * @param port  Port number.
+     */
+    public MultiUserSosServer(int port, int board) {
         this.port = port;
+        threads = new ArrayList<Thread>();
+        usernames = new ArrayList<String>();
+        this.board = board;
+
     }
 
-    public void listen() {
+    /**
+     * This is the listen method that will activate the listening for connections
+     */
+    public void listen() throws IOException {
+        ServerSocket server = null;
+        //is
         try {
-            ServerSocket server = new ServerSocket(port);
-            Socket connection = server.accept();
-        } catch (Exception e) {
-
-        }
-
-    }
-
-    public void checkCommands(String command) {
-            if (command.equals("/connect")) {
-                //sends
-            } else if(command.equals("/play")) {
-                //sent by clients to play sos
-                //cant not begin until 2 or more players connected
-            } else if(command.equals("/move")) {
-                //mooovee around on board
-                // [sS|oO] [0-9]+ [0-9]+
-            } else if (command.equals("/quit")) {
-
+            server = new ServerSocket(port);
+            Socket connect = null;
+            while (!server.isClosed()) {
+                connect = server.accept();
+                NetworkInterface nf = new NetworkInterface(connect);
+                Thread thread = new Thread(nf);
+                threads.add(thread);
+                thread.start();
+                }
+            for (Thread thread : threads) {
+                thread.join();
             }
+            connect.close();
+        } catch (InterruptedException ie) {
+        } finally {
+            server.close();
+        }
     }
 
-    public void messageReceived(String message, MessageSource source){}
+    /** Get the arraylist of usernames */
+    public static ArrayList<String> getUsernames() {
+        return usernames;
+    }
+    /** Receives message from subject */
+    public void messageReceived(String message, MessageSource source){
+        System.out.println(message);
+    }
+    /** Receives source closing from subject */
     public void sourceClosed(MessageSource source){}
 }
